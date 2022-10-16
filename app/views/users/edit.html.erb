@@ -1,4 +1,4 @@
-<h1>ユーザー登録</h1>
+<h1>ユーザー情報編集</h1>
 
 <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -24,10 +24,10 @@
   <%= f.label :パスワード再入力 %>
   <%= f.password_field :password_confirmation %>
 
-  <%= f.label :プロフィール画像 %>
-  <%= picture_tag(user.picture.url) if user.picture && user.picture.url %>
-  <%= f.file_field :picture %>
-  <%= f.hidden_field :picture_cache %>
+  <%= form.label :picture %>
+  <%= picture_tag(feed.picture.url) if feed.picture && feed.picture.url %>
+  <%= form.file_field :picture %>
+  <%= form.hidden_field :picture_cache %>
 
-  <%= f.submit "登録" %>
+  <%= f.submit "内容変更" %>
 <% end %>

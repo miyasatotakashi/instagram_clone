@@ -2,4 +2,6 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
-<%= link_to '投稿一覧', feeds_path %>
+<%= picture_tag(user.picture.url) if user.picture && user.picture.url %>
+
+<%= link_to '投稿一覧', users_path %>
