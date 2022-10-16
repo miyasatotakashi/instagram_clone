@@ -63,6 +63,7 @@ class FeedsController < ApplicationController
 
   def confirm
     @feed = Feed.new(feed_params)
+    render :new if @feed.invalid?
   end
 
   private
