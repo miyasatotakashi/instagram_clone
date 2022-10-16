@@ -12,7 +12,11 @@ class FeedsController < ApplicationController
 
   # GET /feeds/new
   def new
-    @feed = Feed.new
+    if params[:back]
+      @feed = Feed.new(feed_params)
+    else
+      @feed = Feed.new
+    end
   end
 
   # GET /feeds/1/edit
@@ -55,6 +59,10 @@ class FeedsController < ApplicationController
       format.html { redirect_to feeds_url, notice: "Feed was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def confirm
+    @feed = Feed.new(feed_params)
   end
 
   private

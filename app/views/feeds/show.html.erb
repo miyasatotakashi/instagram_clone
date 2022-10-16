@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Image:</strong>
+  <strong>画像:</strong>
   <%= image_tag @feed.image.url %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>コメント:</strong>
   <%= @feed.content %>
 </p>
 
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
+<%= link_to '投稿編集', edit_feed_path(@feed) %> |
+<%= link_to '投稿一覧', feeds_path %>

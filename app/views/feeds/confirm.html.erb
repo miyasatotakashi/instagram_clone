@@ -3,6 +3,10 @@
   <!-- 確認画面でアップロードした画像を表示させるための記述 -->
   <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
   <%= form.hidden_field :image_cache %>
+    <br>
+      <%= form.hidden_field :content %>
+      <P>本文:<%= @feed.content %></p>
+      <br>
   <%= form.submit "投稿する" %>
 <% end %>
 
