@@ -10,15 +10,24 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])    
+    @user = User.find(params[:id])
+    if current_user.id == @user.id
+    else
+      redirect_to user_path(@user.id)
+    end
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to user_path(@user.id)
-    else
-      render :new
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to user_url(@user), notice: "user was successfully created." }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
   
