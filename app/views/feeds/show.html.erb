@@ -9,7 +9,5 @@
   <strong>コメント:</strong>
   <%= @feed.content %>
 </p>
-<% if current_user.id == @user.id %>
 <%= link_to '投稿編集', edit_feed_path(@feed) %> 
-<% end %>
 <%= link_to '投稿一覧', feeds_path %>
