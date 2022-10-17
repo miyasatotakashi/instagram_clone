@@ -1,5 +1,4 @@
 class FeedsController < ApplicationController
-  before_action :set_feed, only: %i[ show edit update destroy ]
 
   # GET /feeds or /feeds.json
   def index
@@ -8,6 +7,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
+    @feed = Feed.find(params[:id])
   end
 
   # GET /feeds/new
@@ -21,6 +21,10 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1/edit
   def edit
+    @feed = Feed.find(params[:id])
+    if current_user != user
+      redirect_to feeds_path(current_user)
+    end
   end
 
   # POST /feeds or /feeds.json
@@ -40,6 +44,10 @@ class FeedsController < ApplicationController
 
   # PATCH/PUT /feeds/1 or /feeds/1.json
   def update
+    @feed = Feed.find(params[:id])
+    if current_user != user
+      redirect_to feeds_path(current_user)
+    end
     respond_to do |format|
       if @feed.update(feed_params)
         format.html { redirect_to feed_url(@feed), notice: "Feed was successfully updated." }
@@ -53,6 +61,7 @@ class FeedsController < ApplicationController
 
   # DELETE /feeds/1 or /feeds/1.json
   def destroy
+    @feed = Feed.find(params[:id])
     @feed.destroy
 
     respond_to do |format|

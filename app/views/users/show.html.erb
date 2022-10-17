@@ -2,6 +2,10 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 
-<%= image_tag(@user.picture.url) if @user.picture && @user.picture.url %>
+<p><%= image_tag(@user.picture.url) if @user.picture && @user.picture.url %></p>
 
-<%= link_to '投稿一覧', feeds_path %>
+<% if current_user.id == @user.id %>
+<%= link_to 'プロフィール編集', edit_user_path(@user) %>
+<% end %>
+
+<p><%= link_to '投稿一覧', feeds_path %></p>

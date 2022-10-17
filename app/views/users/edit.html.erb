@@ -24,10 +24,10 @@
   <%= f.label :パスワード再入力 %>
   <%= f.password_field :password_confirmation %>
 
-  <%= form.label :picture %>
-  <%= picture_tag(feed.picture.url) if feed.picture && feed.picture.url %>
-  <%= form.file_field :picture %>
-  <%= form.hidden_field :picture_cache %>
+  <%= f.label :picture %>
+  <%= image_tag(@user.picture.url) if @user.picture && @user.picture.url %>
+  <%= f.file_field :picture %>
+  <%= f.hidden_field :picture_cache %>
 
   <%= f.submit "内容変更" %>
 <% end %>
