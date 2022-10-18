@@ -22,13 +22,14 @@ class FeedsController < ApplicationController
   end
 
   def create
-    @feed = Feed.new(feed_params)
-    @feed.user_id = current_user.id
+    # @feed = Feed.new(feed_params)
+    # @feed.user_id = current_user.id
+    @feed = current_user.feeds.build(feed_params)
     if params[:back]
       render :new
     else
       if @feed.save
-        UserMailer.contact_mail(@contact).deliver
+        ContactMailer.send_mail(@feed.user).deliver
         redirect_to feeds_path, notice: "投稿しました！"
       else
         render :new

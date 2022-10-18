@@ -15,6 +15,7 @@
     <% @feeds.each do |feed| %>
       <tr>
         <td><%= image_tag(feed.image.url) if feed.image && feed.image.url %></td>
+        <td><%= feed.user.name %></td>
         <td><%= feed.content %></td>
         <td><%= link_to 'Show', feed %></td>
         <td><%= link_to '投稿編集', edit_feed_path(feed) %></td>
