@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>画像</th>
+      <th>投稿画像</th>
+      <th>ユーザー名</th>
       <th>コメント</th>
       <th colspan="3"></th>
     </tr>
@@ -17,9 +18,11 @@
         <td><%= image_tag(feed.image.url) if feed.image && feed.image.url %></td>
         <td><%= feed.user.name %></td>
         <td><%= feed.content %></td>
-        <td><%= link_to 'Show', feed %></td>
+        <td><%= link_to '画像詳細', feed %></td>
+        <% if feed.user == current_user %>
         <td><%= link_to '投稿編集', edit_feed_path(feed) %></td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Feed', new_feed_path %>
+<%= link_to '新規投稿', new_feed_path %>
