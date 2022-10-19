@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_16_065722) do
+ActiveRecord::Schema.define(version: 2022_10_19_023354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "feed_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_id"], name: "index_favorites_on_feed_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "feeds", force: :cascade do |t|
     t.text "image"
@@ -34,5 +43,7 @@ ActiveRecord::Schema.define(version: 2022_10_16_065722) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "favorites", "feeds"
+  add_foreign_key "favorites", "users"
   add_foreign_key "feeds", "users"
 end

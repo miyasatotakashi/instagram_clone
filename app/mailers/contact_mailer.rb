@@ -1,6 +1,6 @@
 class ContactMailer < ApplicationMailer
   def send_mail(user)
     @user = user
-    mail to: @user.email, subject: "お問い合わせの確認メールについて"
+    mail to: @user.email, subject: "新規投稿がありました"
   end
 end
